@@ -13,19 +13,6 @@ export default function Home() {
       {/* Main Content */}
       <main className="ml-43 min-h-screen">
 
-        <div className="mx-auto max-w px-7 py-7">
-
-          {/* Header */}
-          <OverviewHeader />
-
-          {/* Summary */}
-          <CampaignSummary />
-
-          {/* History */}
-          <SubmissionHistory />
-
-        </div>
-
       </main>
 
     </div>

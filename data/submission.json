@@ -1,0 +1,35 @@
+  [
+      {
+          "date": "01 Agustus 2026",
+          "campaign": "pendidikanyatim",
+          "contacts": "3000",
+          "status": "Di Jadwalkan",
+          "sentDate": "04 Agustus 2026",
+          "title"   : "Pahala berlipat di Bulan Suci!",
+          "slug": "sedekah-jariyah-4-in-1",
+          "description": "donasi sekarang dan bantu sesama dapatkan pahala berlipat di bulan suci dengan klik donasi sekarang!",
+          "image": "/images/Sh.png"
+        },
+         { 
+          "date": "02 Agustus 2026",
+          "campaign": "pendidikan",
+          "contacts": "3000",
+          "status": "Terkirim",
+          "sentDate": "02 Agustus 2026",
+          "title"   : "berpahala!",
+          "slug": "sedekah-jariyah-2-in-1",
+          "description": "donasi sekarang dan bantu sesama dapatkan pahala berlipat di bulan suci dengan klik donasi sekarang!",
+          "image": "/images/Sh.png"
+        },
+          {
+          "date": "03 Agustus 2026",
+          "campaign": "bangunsekolah",
+          "contacts": "3030",
+          "status": "Di Jadwalkan",
+          "sentDate": "05 Agustus 2026",
+          "title": "Pahala",
+          "slug": "sedekah-jariyah-5-in-1",
+          "description": "donasi sekarang dan bantu sesama dapatkan pahala berlipat di bulan suci dengan klik donasi sekarang! ",
+          "image": "/images/Sh.png"
+        }
+  ]
