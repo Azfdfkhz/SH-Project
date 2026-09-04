@@ -28,7 +28,7 @@ export default function CampaignHover({ item }) {
   return (
     <div
       className={`relative inline-block ${
-        isHovered ? "z-[999]" : "z-10"
+        isHovered ? "z-999" : "z-10"
       }`}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
@@ -42,7 +42,7 @@ export default function CampaignHover({ item }) {
 
       {isHovered && (
         <div
-          className={`absolute z-[9999] w-[217px] ${
+          className={`absolute z-9999 w-217px ${
             showSide
               ? "left-full top-1/2 ml-3 -translate-y-1/2"
               : "left-0 bottom-full mb-3"

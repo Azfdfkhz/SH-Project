@@ -43,19 +43,6 @@ export default function CampaignSummary() {
           }
         />
 
-        <SummaryCard
-          variant="blue"
-          title="Total Data"
-          value={data.totalData.value}
-          description={data.totalData.description}
-          icon={
-            <PhoneCall
-              size={27}
-              strokeWidth={2}
-              className="text-[#2768c7]"
-            />
-          }
-        />
 
         <div className="h-[59px] w-px bg-[#999]" />
 
