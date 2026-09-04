@@ -35,10 +35,10 @@ export default function CampaignSummary() {
           value={data.pengajuan.value}
           description={data.pengajuan.description}
           icon={
-            <Rocket
-              size={25}
-              strokeWidth={2}
-              className="text-[#00a844]"
+            <img
+              src="/BlastRocketGreen.svg"
+              alt="Blast Rocket"
+              className="h-[25px] w-[25px]"
             />
           }
         />

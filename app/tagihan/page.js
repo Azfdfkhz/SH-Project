@@ -1,7 +1,7 @@
 import Sidebar from "@/components/Sidebar";
 import OverviewHeader from "@/components/overview/OverviewHeader";
-import BlastForm from "@/components/ajukanblast/BlastForm"
-import WhatsAppInfo from "@/components/ajukanblast/WhatsappInfo"
+import CampaignSummary from "@/components/overview/CampaignSummary";
+import SubmissionHistory from "@/components/overview/SubmissionHistory";
 
 export default function Home() {
   return (
@@ -18,15 +18,8 @@ export default function Home() {
           {/* Header */}
           <OverviewHeader />
 
-          <div className="grid grid-cols-[537px_1fr] items-start gap-4">
 
-          {/* Form */}
-          <BlastForm />
 
-          {/* Information */}
-          <WhatsAppInfo />
-
-          </div>
         </div>
 
       </main>
