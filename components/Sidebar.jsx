@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import {
   ArrowLeft,
   BarChart3,
@@ -21,13 +22,15 @@ const menuItems = [
 ];
 
 export default function Sidebar() {
+  const pathname = usePathname();
+
   return (
     <aside className="fixed left-0 top-0 z-50 flex h-screen w-[172px] flex-col bg-white shadow-[2px_0_8px_rgba(0,0,0,0.12)]">
-      
+
       {/* Header */}
       <div className="flex h-[70px] items-center px-5">
 
-        <Link href="/overview " className="mr-4 text-[#263238]">
+        <Link href="/overview" className="mr-4 text-[#263238]">
           <ArrowLeft size={25} strokeWidth={2} />
         </Link>
 
@@ -40,6 +43,8 @@ export default function Sidebar() {
       <nav className="mt-4">
         {menuItems.map((item) => {
           const Icon = item.icon;
+          const isActive =
+            pathname === item.href || pathname.startsWith(`${item.href}/`);
 
           return (
             <Link
@@ -50,7 +55,7 @@ export default function Sidebar() {
                 text-[12px] font-semibold
                 transition-colors
                 ${
-                  item.name === "Overview"
+                  isActive
                     ? "bg-[#e8f0fb] text-[#263238]"
                     : "text-[#263238] hover:bg-gray-50"
                 }
@@ -59,11 +64,7 @@ export default function Sidebar() {
               <Icon
                 size={23}
                 strokeWidth={2.3}
-                className={
-                  item.name === "Overview"
-                    ? "text-[#2874c6]"
-                    : "text-[#2874c6]"
-                }
+                className="text-[#2874c6]"
               />
 
               <span>{item.name}</span>

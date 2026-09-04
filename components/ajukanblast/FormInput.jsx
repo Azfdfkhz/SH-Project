@@ -12,6 +12,8 @@ export default function FormInput({
   placeholder,
   type = "text",
   icon,
+  value = "",
+  onChange,
 }) {
   const Icon = icons[icon];
 
@@ -25,6 +27,8 @@ export default function FormInput({
         <input
           type={type}
           placeholder={placeholder}
+          value={value}
+          onChange={(e) => onChange?.(e.target.value)}
           className="
             h-[38px]
             w-full

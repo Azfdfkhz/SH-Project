@@ -1,7 +1,7 @@
 import SectionTitle from "../SectionTitle";
 import ReadonlyInput from "../ReadonlyInput";
 
-export default function CampaignDetail() {
+export default function CampaignDetail({ slug = "", onSlugChange, error }) {
   return (
     <section className="mt-7">
       <SectionTitle
@@ -17,7 +17,9 @@ export default function CampaignDetail() {
 
         <input
           type="text"
-          placeholder="Auto terisi"
+          placeholder="Contoh: sedekah-jariyah-4-in-1"
+          value={slug}
+          onChange={(e) => onSlugChange?.(e.target.value)}
           className="
             h-[38px]
             w-full
@@ -35,6 +37,9 @@ export default function CampaignDetail() {
         <p className="mt-1 text-[9px] text-[#7c8795]">
           Slug akan menghasilkan rincian detail campaign secara otomatis.
         </p>
+        {error && (
+          <p className="mt-1 text-[9px] text-red-500">{error}</p>
+        )}
       </div>
 
       {/* Campaign title */}
