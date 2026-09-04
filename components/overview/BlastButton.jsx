@@ -4,7 +4,7 @@ import { Rocket } from "lucide-react";
 export default function BlastButton() {
   return (
     <Link
-      href="/ajukan-blast"
+      href="/overview/ajukan-blast"
       className="
         flex h-[82px] w-[225px]
         items-center justify-center

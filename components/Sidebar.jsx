@@ -31,18 +31,8 @@ export default function Sidebar() {
           <ArrowLeft size={25} strokeWidth={2} />
         </Link>
 
-        <div className="leading-none">
-          <div className="text-[17px] font-bold text-[#1565c0]">
-            sharing
-          </div>
-
-          <div className="text-[17px] font-bold text-[#1565c0]">
-            happiness
-          </div>
-        </div>
-
-        <div className="ml-[-2px] mt-[-23px] text-[18px] text-[#fbc02d]">
-          ✣
+        <div>
+          <img src="/images/Logo-SH.png" alt="" />
         </div>
       </div>
 
