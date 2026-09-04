@@ -1,13 +1,9 @@
-import Overview from "@/app/overview/page"
-import Tagihan from"@/app/tagihan/page"
+import { redirect } from "next/navigation";
 
 export default function Home() {
-  return (
-    <>
-      <Overview/>
-
-      <Tagihan/>
-      
-    </>
-  );
+  // Root "/" bukan halaman tersendiri — arahkan ke Overview
+  // (sebelumnya app/page.js merender <Overview/> dan <Tagihan/> sekaligus,
+  // padahal keduanya masing-masing sudah membawa <Sidebar/> & <OverviewHeader/> sendiri,
+  // jadi hasilnya sidebar & header dobel saat halaman "/" dibuka).
+  redirect("/overview");
 }

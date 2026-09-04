@@ -6,6 +6,8 @@ export default function ConfirmationModal({
   isOpen,
   onClose,
   onConfirm,
+  isSubmitting = false,
+  error = null,
 }) {
   if (!isOpen) return null;
 
@@ -56,11 +58,19 @@ export default function ConfirmationModal({
           ke proses review oleh tim Sharing Happiness.
         </p>
 
+        {/* Error message */}
+        {error && (
+          <p className="mx-auto mt-3 max-w-[330px] text-center text-[11px] text-red-500">
+            {error}
+          </p>
+        )}
+
         {/* Buttons */}
         <div className="mt-9 flex gap-7">
           <button
             type="button"
             onClick={onClose}
+            disabled={isSubmitting}
             className="
               h-[40px]
               flex-1
@@ -73,6 +83,8 @@ export default function ConfirmationModal({
               text-[#252525]
               transition
               hover:bg-gray-50
+              disabled:cursor-not-allowed
+              disabled:opacity-50
             "
           >
             Batal
@@ -81,6 +93,7 @@ export default function ConfirmationModal({
           <button
             type="button"
             onClick={onConfirm}
+            disabled={isSubmitting}
             className="
               h-[40px]
               flex-[1.7]
@@ -91,9 +104,11 @@ export default function ConfirmationModal({
               text-white
               transition
               hover:bg-[#1d56ac]
+              disabled:cursor-not-allowed
+              disabled:opacity-70
             "
           >
-            Ajukan Sekarang
+            {isSubmitting ? "Mengirim..." : "Ajukan Sekarang"}
           </button>
         </div>
       </div>
