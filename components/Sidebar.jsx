@@ -10,7 +10,7 @@ import {
 const menuItems = [
   {
     name: "Overview",
-    href: "/",
+    href: "/overview",
     icon: BarChart3,
   },
   {
@@ -27,7 +27,7 @@ export default function Sidebar() {
       {/* Header */}
       <div className="flex h-[70px] items-center px-5">
 
-        <Link href="/ " className="mr-4 text-[#263238]">
+        <Link href="/overview " className="mr-4 text-[#263238]">
           <ArrowLeft size={25} strokeWidth={2} />
         </Link>
 

@@ -19,8 +19,12 @@ export default function BlastButton() {
         active:scale-[0.98]
       "
     >
-      <div className="flex h-[48px] w-[48px] items-center justify-center">
-        <Rocket size={45} strokeWidth={1.8} />
+        <div className="flex h-[48px] w-[48px] items-center justify-center">
+          <img
+            src="/BlastRocket.svg"
+            alt="Blast Rocket"
+            className="h-[45px] w-[45px]"
+          />
       </div>
 
       <div className="text-left">
