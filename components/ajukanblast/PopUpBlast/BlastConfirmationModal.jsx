@@ -30,10 +30,12 @@ export default function ConfirmationModal({
         className="
           relative
           z-10
-          w-[410px]
+          w-[90%]
+          max-w-[410px]
           rounded-[18px]
           bg-white
-          px-8
+          px-5
+          md:px-8
           pb-5
           pt-7
           shadow-[0_10px_40px_rgba(0,0,0,0.2)]

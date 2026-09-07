@@ -13,15 +13,16 @@ export default function WhatsAppInfo() {
     <aside
       className="
         relative
-        h-[550px]
+        min-h-[480px] md:h-[550px]
         overflow-hidden
         rounded-[9px]
         bg-[#EDF6FF]
         shadow-[0_2px_5px_rgba(0,0,0,0.12)]
+        pb-52 md:pb-0
       "
     >
       {/* Text */}
-      <div className="relative z-10 px-10 pt-7">
+      <div className="relative z-10 px-5 md:px-10 pt-6 md:pt-7">
         <h2 className="text-[12px] font-bold text-[#4b5563]">
           Tentang Optimasi WhatsApp
         </h2>
@@ -63,7 +64,7 @@ export default function WhatsAppInfo() {
       </div>
 
       {/* Decorative bottom */}
-        <div className="absolute bottom-0 left-0 right-0 h-[240px] w-full overflow-hidden">
+        <div className="absolute bottom-0 left-0 right-0 h-[200px] w-full overflow-hidden">
         <img
             src="/WAInfo.svg"
             alt=""

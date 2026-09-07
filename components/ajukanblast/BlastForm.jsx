@@ -156,7 +156,7 @@ export default function BlastForm() {
   };
 
   return (
-    <div className="rounded-[14px] bg-white px-8 py-7 shadow-[0_5px_20px_rgba(0,0,0,0.06)]">
+    <div className="rounded-[14px] bg-white px-4 md:px-8 py-5 md:py-7 shadow-[0_5px_20px_rgba(0,0,0,0.06)]">
       <MemberData
         picName={form.picName}
         onPicNameChange={updateField("picName")}

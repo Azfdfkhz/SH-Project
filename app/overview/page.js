@@ -11,9 +11,9 @@ export default function OverviewPage() {
       <Sidebar />
 
       {/* Main Content */}
-      <main className="ml-[130px] min-h-screen">
+      <main className="ml-0 pt-14 md:ml-[172px] md:pt-0 min-h-screen">
 
-        <div className="mx-auto max-w-[1100px] px-7 py-7">
+        <div className="mx-auto max-w-[1100px] px-4 py-5 md:px-7 md:py-7">
 
           {/* Header */}
           <OverviewHeader />

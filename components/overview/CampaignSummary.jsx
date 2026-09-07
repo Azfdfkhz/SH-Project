@@ -35,8 +35,8 @@ export default function CampaignSummary() {
   };
 
   return (
-    <section className="rounded-[10px] bg-white p-7 shadow-sm">
-      <div className="flex items-center justify-between gap-6">
+    <section className="rounded-[10px] bg-white p-4 md:p-7 shadow-sm">
+      <div className="flex flex-col md:flex-row items-stretch md:items-center justify-between gap-4 md:gap-6">
         
         <SummaryCard
           variant="green"
@@ -53,38 +53,41 @@ export default function CampaignSummary() {
           }
         />
 
-        <div className="h-[59px] w-px bg-[#999]" />
+        <div className="hidden md:block h-[59px] w-px bg-[#999]" />
 
-        <div className="min-w-0 flex-1">
-          <p className="text-[11px] font-bold leading-[15px] text-[#666]">
+        <div className="min-w-0 flex-1 text-center md:text-left">
+          <p className="text-[12px] md:text-[11px] font-bold leading-[16px] text-[#666]">
             {sisaPengajuan > 0 ? (
               <>
                 Kamu Masih Bisa mengajukan
-                <br />
+                <br className="hidden md:inline" />{" "}
                 Blast di bulan ini!
               </>
             ) : (
               <>
                 Kuota pengajuan bulan ini
-                <br />
+                <br className="hidden md:inline" />{" "}
                 sudah habis (0).
               </>
             )}
           </p>
 
-          <p className="mt-2 text-[9px] leading-[13px] text-[#aaa]">
+          <p className="mt-1 md:mt-2 text-[10px] md:text-[9px] leading-[14px] text-[#aaa]">
             {sisaPengajuan > 0
               ? "Jangkau lebih banyak donatur untuk campaign kamu."
               : "Harus nunggu untuk dapat kuota campaign berikutnya."}
           </p>
         </div>
 
-        <BlastButton
-          sisaPengajuan={sisaPengajuan}
-          onClick={handleBlastButtonClick}
-        />
+        <div className="w-full md:w-auto flex justify-center md:justify-end">
+          <BlastButton
+            sisaPengajuan={sisaPengajuan}
+            onClick={handleBlastButtonClick}
+          />
+        </div>
 
       </div>
+
 
       <BlastQuotaEmptyModal
         isOpen={isQuotaEmptyOpen}

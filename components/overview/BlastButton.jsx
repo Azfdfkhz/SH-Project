@@ -17,7 +17,7 @@ export default function BlastButton({ sisaPengajuan, onClick }) {
       href="/overview/ajukan-blast"
       onClick={handleClick}
       className="
-        flex h-[82px] w-[225px]
+        flex h-[82px] w-full md:w-[225px]
         items-center justify-center
         gap-4
         rounded-[11px]

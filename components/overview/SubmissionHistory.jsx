@@ -54,24 +54,24 @@ export default function SubmissionHistory() {
   };
 
   return (
-    <section className="mt-5 rounded-[10px] bg-white p-7 shadow-sm">
+    <section className="mt-5 rounded-[10px] bg-white p-4 md:p-7 shadow-sm">
 
-      <h2 className="mb-7 text-[16px] font-bold text-[#202020]">
+      <h2 className="mb-4 md:mb-7 text-[16px] font-bold text-[#202020]">
         Riwayat Pengajuan
       </h2>
 
-      <div className="overflow-visible rounded-[5px] border border-[#e5e5e5]">
-
-        <div
-          className="
-            grid
-            grid-cols-[1.1fr_1.1fr_1fr_1fr_1fr]
-            items-center
-            bg-[#f0faf6]
-            px-3
-            py-[7px]
-          "
-        >
+      <div className="overflow-x-auto rounded-[5px] border border-[#e5e5e5]">
+        <div className="min-w-[600px]">
+          <div
+            className="
+              grid
+              grid-cols-[1.1fr_1.1fr_1fr_1fr_1fr]
+              items-center
+              bg-[#f0faf6]
+              px-3
+              py-[7px]
+            "
+          >
           <p className="text-[10px] font-bold text-[#506174]">
             Tanggal Pengajuan
           </p>
@@ -132,6 +132,7 @@ export default function SubmissionHistory() {
         {/* Empty space seperti desain */}
         <div className="h-[33px] border-t border-[#eeeeee]" />
 
+        </div>
       </div>
     </section>
   );

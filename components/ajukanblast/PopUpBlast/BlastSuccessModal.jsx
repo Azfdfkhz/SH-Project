@@ -21,7 +21,7 @@ export default function SuccessModal({ isOpen, onClose }) {
         role="dialog"
         aria-modal="true"
         aria-labelledby="blast-success-title"
-        className="relative z-10 w-[420px] rounded-[16px] bg-white p-7 shadow-xl text-center"
+        className="relative z-10 w-[90%] max-w-[420px] rounded-[16px] bg-white p-5 md:p-7 shadow-xl text-center"
       >
         {/* Title */}
         <h2

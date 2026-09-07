@@ -25,10 +25,12 @@ export default function BlastQuotaEmptyModal({ isOpen, onClose }) {
         className="
           relative
           z-10
-          w-[410px]
+          w-[90%]
+          max-w-[410px]
           rounded-[18px]
           bg-white
-          px-8
+          px-5
+          md:px-8
           pb-6
           pt-7
           text-center

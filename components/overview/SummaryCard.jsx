@@ -23,13 +23,13 @@ export default function SummaryCard({
   return (
     <div
       className={`
-        flex h-[82px] w-[196px]
+        flex h-[82px] w-full md:w-[196px]
         items-center gap-3
         rounded-[9px]
         border
         ${style.border}
         ${style.cardBg}
-        px-3
+        px-4 md:px-3
       `}
     >
       {/* Icon */}
