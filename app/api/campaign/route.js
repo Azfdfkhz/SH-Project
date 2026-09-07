@@ -2,10 +2,6 @@ import { NextResponse } from "next/server";
 import fs from "fs";
 import path from "path";
 
-// Route ini baca file JSON yang datanya bisa berubah kapan saja
-// (setelah ada pengajuan baru). Tanpa ini, Next.js menganggap route
-// GET yang tidak pakai request/cookies sebagai "static" dan meng-cache
-// responsnya, jadi angka pengajuan kelihatan tidak pernah update.
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
 

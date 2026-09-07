@@ -1,12 +1,13 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import MemberData from "./DataKemitraan/MemberData";
 import CampaignDetail from "./DetailCampaign/CampaignDetail";
 import BlastConfiguration from "./KonfigurationBlast/BlastConfiguration";
 import ConfirmationModal from "./PopUpBlast/BlastConfirmationModal";
 import SuccessModal from "./PopUpBlast/BlastSuccessModal";
+import BlastQuotaEmptyModal from "./PopUpBlast/BlastQuotaEmptyModal";
 import { MAX_KUOTA, PHONE_REGEX } from "@/lib/constants";
 
 const initialForm = {
@@ -35,8 +36,21 @@ export default function BlastForm() {
   const [errors, setErrors] = useState({});
   const [isConfirmOpen, setIsConfirmOpen] = useState(false);
   const [isSuccessOpen, setIsSuccessOpen] = useState(false);
+  const [isQuotaEmptyOpen, setIsQuotaEmptyOpen] = useState(false);
+  const [sisaPengajuan, setSisaPengajuan] = useState(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState(null);
+
+  useEffect(() => {
+    fetch("/api/campaign")
+      .then((res) => res.json())
+      .then((data) => {
+        if (data?.pengajuan?.value !== undefined) {
+          setSisaPengajuan(Number(data.pengajuan.value));
+        }
+      })
+      .catch((err) => console.error("Gagal mengambil data kuota campaign:", err));
+  }, []);
 
   const updateField = (field) => (value) => {
     setForm((prev) => ({ ...prev, [field]: value }));
@@ -79,6 +93,10 @@ export default function BlastForm() {
   };
 
   const handleSubmitClick = () => {
+    if (sisaPengajuan !== null && sisaPengajuan <= 0) {
+      setIsQuotaEmptyOpen(true);
+      return;
+    }
     if (!validate()) return;
     setSubmitError(null);
     setIsConfirmOpen(true);
@@ -114,6 +132,11 @@ export default function BlastForm() {
       const result = await res.json().catch(() => ({}));
 
       if (!res.ok) {
+        if (result.message && result.message.includes("0")) {
+          setIsConfirmOpen(false);
+          setIsQuotaEmptyOpen(true);
+          return;
+        }
         throw new Error(result.message || "Gagal mengirim pengajuan");
       }
 
@@ -172,6 +195,11 @@ export default function BlastForm() {
       <SuccessModal
         isOpen={isSuccessOpen}
         onClose={() => setIsSuccessOpen(false)}
+      />
+
+      <BlastQuotaEmptyModal
+        isOpen={isQuotaEmptyOpen}
+        onClose={() => setIsQuotaEmptyOpen(false)}
       />
     </div>
   );

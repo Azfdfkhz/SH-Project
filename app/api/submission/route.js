@@ -46,16 +46,45 @@ export async function POST(request) {
       );
     }
 
+    // Cek sisa kuota pengajuan bulan ini
+    const campaignPath = path.join(process.cwd(), "data", "campaign.json");
+    let kuotaBulanan = 4;
+    if (fs.existsSync(campaignPath)) {
+      const campaignData = JSON.parse(fs.readFileSync(campaignPath, "utf8"));
+      kuotaBulanan = campaignData.pengajuanKuota ?? 4;
+    }
+
+    const filePath = getFilePath();
+    const fileContents = fs.readFileSync(filePath, "utf8");
+    const data = JSON.parse(fileContents);
+
+    const now = new Date();
+    const bulanIni = now.getMonth();
+    const tahunIni = now.getFullYear();
+
+    const pengajuanBulanIni = data.filter((item) => {
+      if (!item.createdAt) return false;
+      const tanggalItem = new Date(item.createdAt);
+      return tanggalItem.getMonth() === bulanIni && tanggalItem.getFullYear() === tahunIni;
+    }).length;
+
+    const sisaPengajuan = Math.max(kuotaBulanan - pengajuanBulanIni, 0);
+    if (sisaPengajuan <= 0) {
+      return NextResponse.json(
+        { message: "Kuota pengajuan campaign bulan ini telah habis (0). Harap tunggu periode berikutnya." },
+        { status: 400 }
+      );
+    }
+
+
     // TODO(backend):
     // 1. Ganti logika file JSON ini dengan query database (misal: Prisma/Drizzle/SQL).
     // 2. Berdasarkan `slug` yang dikirim, cari data Campaign terkait di Database untuk mendapatkan `campaignTitle` / `campaignName`.
     // 3. Field `createdAt` dan `sentAt` menggunakan format ISO 8601 standar (mis. 2026-09-06T12:00:00Z).
     // 4. Simpan URL poster dari Cloud Storage ke field `image`.
-    const filePath = getFilePath();
-    const fileContents = fs.readFileSync(filePath, "utf8");
-    const data = JSON.parse(fileContents);
 
     // Untuk mock: Ubah slug "sedekah-jariyah" menjadi Nama Campaign "Sedekah Jariyah"
+
     const formattedCampaignName = slug
       .split("-")
       .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
@@ -66,7 +95,7 @@ export async function POST(request) {
       createdAt: new Date().toISOString(),
       campaign: formattedCampaignName,
       contacts: kuotaNumber,
-      status: "Dijadwalkan",
+      status: "Di jadwalkan",
       sentAt: null,
       title: formattedCampaignName,
       slug: slug.toLowerCase().trim(),

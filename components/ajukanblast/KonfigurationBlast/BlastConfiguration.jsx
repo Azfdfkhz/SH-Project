@@ -68,7 +68,7 @@ export default function BlastConfiguration({
         )}
       </div>
 
-      {/* Quota + Date */}
+      {/* Kuota blast */}
       <div className="mt-3 grid grid-cols-2 gap-3">
         <div>
           <FormInput
@@ -88,12 +88,12 @@ export default function BlastConfiguration({
           )}
         </div>
 
+        {/* tanggal blast */}
         <div>
           <FormInput
             label="Tanggal Blast"
             placeholder="Pilih Tanggal Pengiriman"
             type="date"
-            icon="calendar"
             min={todayISO}
             value={tanggal}
             onChange={onTanggalChange}
