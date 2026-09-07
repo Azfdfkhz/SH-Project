@@ -2,30 +2,56 @@
 
 import StatusBadge from "./StatusBadge";
 import CampaignHover from "@/components/overview/CampaignHover";
-import {ArrowUpRight} from "lucide-react";
-import { useState, useEffect } from "react";
+import { ArrowUpRight } from "lucide-react";
+import { useState, useEffect, useCallback } from "react";
 
 export default function SubmissionHistory() {
   const [data, setData] = useState(null);
   const [error, setError] = useState(null);
 
-  useEffect(() => {
+  const fetchData = useCallback(() => {
     fetch("/api/submission")
       .then((res) => {
         if (!res.ok) throw new Error("Gagal mengambil data dari API");
         return res.json();
       })
-      .then((result) => setData(result))
+      .then((result) => {
+        setData(result);
+        setError(null);
+      })
       .catch((err) => {
         console.error("Error fetching API:", err);
         setError(err.message);
       });
   }, []);
 
+  useEffect(() => {
+    fetchData();
+  }, [fetchData]);
+
+  // Ambil ulang data saat user kembali ke tab/window ini,
+  // supaya pengajuan yang baru terkirim langsung muncul.
+  useEffect(() => {
+    const handleVisibility = () => {
+      if (document.visibilityState === "visible") fetchData();
+    };
+
+    document.addEventListener("visibilitychange", handleVisibility);
+    return () =>
+      document.removeEventListener("visibilitychange", handleVisibility);
+  }, [fetchData]);
+
   if (error) return <div className="p-7 text-sm text-red-500">Error: {error}</div>;
   if (!data) return <div className="p-7 text-sm text-gray-500">Loading data...</div>;
 
-
+  const formatDate = (isoString) => {
+    if (!isoString || !isoString.trim()) return "-";
+    return new Date(isoString).toLocaleDateString("id-ID", {
+      day: "2-digit",
+      month: "long",
+      year: "numeric",
+    });
+  };
 
   return (
     <section className="mt-5 rounded-[10px] bg-white p-7 shadow-sm">
@@ -70,7 +96,7 @@ export default function SubmissionHistory() {
         {/* Rows */}
         {data.map((item, index) => (
           <div
-            key={index}
+            key={item.id || `${item.createdAt}-${index}`}
             className="
               grid
               grid-cols-[1.1fr_1.1fr_1fr_1fr_1fr]
@@ -81,7 +107,7 @@ export default function SubmissionHistory() {
             "
           >
             <p className="text-[10px] text-[#777]">
-              {item.date}
+              {formatDate(item.createdAt)}
             </p>
 
             <p className="inline-flex items-center gap-0.2 text-[9px] text-[#777]">
@@ -98,7 +124,7 @@ export default function SubmissionHistory() {
             </div>
 
             <p className="text-center text-[10px] text-[#777]">
-              {item.sentDate}
+              {formatDate(item.sentAt)}
             </p>
           </div>
         ))}

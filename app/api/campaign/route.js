@@ -9,36 +9,8 @@ import path from "path";
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
 
-const BULAN_ID = {
-  januari: 0,
-  februari: 1,
-  maret: 2,
-  april: 3,
-  mei: 4,
-  juni: 5,
-  juli: 6,
-  agustus: 7,
-  september: 8,
-  oktober: 9,
-  november: 10,
-  desember: 11,
-};
-
-function parseTanggalIndonesia(dateStr) {
-  if (!dateStr) return null;
-
-  const parts = dateStr.trim().toLowerCase().split(/\s+/);
-  if (parts.length !== 3) return null;
-
-  const [day, monthName, year] = parts;
-  const month = BULAN_ID[monthName];
-
-  if (month === undefined || Number.isNaN(Number(day)) || Number.isNaN(Number(year))) {
-    return null;
-  }
-
-  return { day: Number(day), month, year: Number(year) };
-}
+// TODO(backend): Ambil dari database.
+// Query jumlah pengajuan yang tanggal createdAt-nya pada bulan ini.
 
 export async function GET() {
   try {
@@ -55,8 +27,9 @@ export async function GET() {
     const tahunIni = now.getFullYear();
 
     const pengajuanBulanIni = submissions.filter((item) => {
-      const tanggal = parseTanggalIndonesia(item.date);
-      return tanggal && tanggal.month === bulanIni && tanggal.year === tahunIni;
+      if (!item.createdAt) return false;
+      const tanggal = new Date(item.createdAt);
+      return tanggal.getMonth() === bulanIni && tanggal.getFullYear() === tahunIni;
     }).length;
 
     const sisaPengajuan = Math.max(kuotaBulanan - pengajuanBulanIni, 0);

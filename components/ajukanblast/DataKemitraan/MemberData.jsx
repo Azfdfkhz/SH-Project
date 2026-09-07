@@ -37,10 +37,11 @@ export default function MemberData({
         <div>
           <FormInput
             label="No. WhatsApp PIC"
-            placeholder="Contoh: 6281234567890"
+            placeholder="Contoh: 081234567890"
             icon="phone"
+            inputMode="tel"
             value={phone}
-            onChange={onPhoneChange}
+            onChange={(value) => onPhoneChange?.(value.replace(/[^0-9+]/g, ""))}
           />
           {errors.phone && (
             <p className="mt-1 text-[9px] text-red-500">{errors.phone}</p>

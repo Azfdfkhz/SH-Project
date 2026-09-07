@@ -54,9 +54,10 @@ export default function CampaignHover({ item }) {
               {/* Image */}
               <div className="relative w-[217px] h-[271px]">
                 <Image
-                  src={item.image}
+                  src={item.image || "/images/Sh.png"}
                   alt={item.campaign}
                   fill
+                  unoptimized
                   className="object-cover"
                 />
               </div>

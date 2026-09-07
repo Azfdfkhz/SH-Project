@@ -1,6 +1,6 @@
 "use client";
 
-import { Rocket } from "lucide-react";
+import useModal from "@/lib/useModal";
 
 export default function ConfirmationModal({
   isOpen,
@@ -9,6 +9,9 @@ export default function ConfirmationModal({
   isSubmitting = false,
   error = null,
 }) {
+  // Hook harus dipanggil sebelum early return (aturan hooks React)
+  useModal({ isOpen, onClose: () => !isSubmitting && onClose() });
+
   if (!isOpen) return null;
 
   return (
@@ -16,11 +19,14 @@ export default function ConfirmationModal({
       {/* Overlay */}
       <div
         className="absolute inset-0 bg-black/50"
-        onClick={onClose}
+        onClick={() => !isSubmitting && onClose()}
       />
 
       {/* Modal */}
       <div
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="blast-confirmation-title"
         className="
           relative
           z-10
@@ -36,6 +42,7 @@ export default function ConfirmationModal({
         {/* Icon */}
         <div className="flex justify-center">
           <div className="flex h-[100px] w-[100px] items-center justify-center">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
                 src="/BlastRocketBlue.svg"
                 alt="Blast Rocket"
@@ -45,7 +52,10 @@ export default function ConfirmationModal({
         </div>
 
         {/* Title */}
-        <h2 className="mt-2 text-center text-[18px] font-bold text-[#111827]">
+        <h2
+          id="blast-confirmation-title"
+          className="mt-2 text-center text-[18px] font-bold text-[#111827]"
+        >
           Ajukan Optimasi WhatsApp?
         </h2>
 

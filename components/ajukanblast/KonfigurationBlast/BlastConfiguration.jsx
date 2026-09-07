@@ -4,6 +4,10 @@ import SectionTitle from "@/components/ajukanblast/SectionTitle";
 import PosterUpload from "@/components/ajukanblast/KonfigurationBlast/PosterUpload";
 import FormInput from "@/components/ajukanblast/FormInput";
 
+// Tanggal hari ini dalam format YYYY-MM-DD untuk atribut `min` input date,
+// supaya tanggal blast di masa lalu tidak bisa dipilih.
+const todayISO = new Date().toISOString().split("T")[0];
+
 export default function BlastConfiguration({
   caption = "",
   onCaptionChange,
@@ -11,6 +15,8 @@ export default function BlastConfiguration({
   onKuotaChange,
   tanggal = "",
   onTanggalChange,
+  poster = null,
+  onPosterChange,
   errors = {},
   onSubmit,
 }) {
@@ -21,7 +27,10 @@ export default function BlastConfiguration({
         title="Konfigurasi Blast"
       />
 
-      <PosterUpload />
+      <PosterUpload
+        file={poster}
+        onFileChange={onPosterChange}
+      />
 
       {/* Caption */}
       <div className="mt-3">
@@ -66,6 +75,7 @@ export default function BlastConfiguration({
             label="Kuota Blast"
             placeholder="Contoh: 2500"
             icon="hash"
+            inputMode="numeric"
             value={kuota}
             onChange={(value) => onKuotaChange?.(value.replace(/[^0-9]/g, ""))}
           />
@@ -84,6 +94,7 @@ export default function BlastConfiguration({
             placeholder="Pilih Tanggal Pengiriman"
             type="date"
             icon="calendar"
+            min={todayISO}
             value={tanggal}
             onChange={onTanggalChange}
           />

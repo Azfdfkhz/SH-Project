@@ -1,20 +1,33 @@
 "use client";
 
+import useModal from "@/lib/useModal";
+
 export default function SuccessModal({ isOpen, onClose }) {
+  // Hook harus dipanggil sebelum early return (aturan hooks React)
+  useModal({ isOpen, onClose });
+
   if (!isOpen) return null;
 
   return (
     <div className="fixed inset-0 z-[999] flex items-center justify-center">
       {/* Overlay */}
-      <div 
-        className="absolute inset-0 bg-black/50" 
-        onClick={onClose} 
+      <div
+        className="absolute inset-0 bg-black/50"
+        onClick={onClose}
       />
 
       {/* Modal Container */}
-      <div className="relative z-10 w-[420px] rounded-[16px] bg-white p-7 shadow-xl text-center">
+      <div
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="blast-success-title"
+        className="relative z-10 w-[420px] rounded-[16px] bg-white p-7 shadow-xl text-center"
+      >
         {/* Title */}
-        <h2 className="text-[20px] font-bold text-[#111827]">
+        <h2
+          id="blast-success-title"
+          className="text-[20px] font-bold text-[#111827]"
+        >
           Pengajuan Berhasil Dikirim!
         </h2>
 

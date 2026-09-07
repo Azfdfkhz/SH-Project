@@ -12,14 +12,15 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata = {
-  title: "Ticketing",
-  description: "test",
+  title: "Sharing Happiness - Campaign Blast",
+  description:
+    "Dashboard pengajuan campaign WhatsApp blast untuk mitra Sharing Happiness.",
 };
 
 export default function RootLayout({ children }) {
   return (
     <html
-      lang="en"
+      lang="id"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">{children}</body>

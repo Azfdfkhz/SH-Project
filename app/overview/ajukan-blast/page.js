@@ -11,9 +11,9 @@ export default function Home() {
       <Sidebar />
 
       {/* Main Content */}
-      <main className="ml-43 min-h-screen">
+      <main className="ml-[172px] min-h-screen">
 
-        <div className="mx-auto max-w px-7 py-7">
+        <div className="mx-auto max-w-[1100px] px-7 py-7">
 
           {/* Header */}
           <OverviewHeader />

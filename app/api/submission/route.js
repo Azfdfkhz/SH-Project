@@ -1,13 +1,12 @@
 import { NextResponse } from "next/server";
 import fs from "fs";
 import path from "path";
+import { MAX_KUOTA } from "@/lib/constants";
 
 // Sama seperti /api/campaign — cegah Next.js meng-cache response
 // GET ini supaya data pengajuan yang baru langsung kelihatan.
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
-
-const MAX_KUOTA = 2500;
 
 function getFilePath() {
   return path.join(process.cwd(), "data", "submission.json");
@@ -30,7 +29,7 @@ export async function GET() {
 export async function POST(request) {
   try {
     const body = await request.json();
-    const { picName, phone, slug, caption, kuota, tanggal } = body ?? {};
+    const { picName, phone, slug, caption, kuota, tanggal, posterName, posterDataUrl } = body ?? {};
 
     if (!picName || !phone || !slug || !caption || !kuota || !tanggal) {
       return NextResponse.json(
@@ -47,29 +46,36 @@ export async function POST(request) {
       );
     }
 
+    // TODO(backend):
+    // 1. Ganti logika file JSON ini dengan query database (misal: Prisma/Drizzle/SQL).
+    // 2. Berdasarkan `slug` yang dikirim, cari data Campaign terkait di Database untuk mendapatkan `campaignTitle` / `campaignName`.
+    // 3. Field `createdAt` dan `sentAt` menggunakan format ISO 8601 standar (mis. 2026-09-06T12:00:00Z).
+    // 4. Simpan URL poster dari Cloud Storage ke field `image`.
     const filePath = getFilePath();
     const fileContents = fs.readFileSync(filePath, "utf8");
     const data = JSON.parse(fileContents);
 
-    const today = new Date().toLocaleDateString("id-ID", {
-      day: "2-digit",
-      month: "long",
-      year: "numeric",
-    });
+    // Untuk mock: Ubah slug "sedekah-jariyah" menjadi Nama Campaign "Sedekah Jariyah"
+    const formattedCampaignName = slug
+      .split("-")
+      .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+      .join(" ");
 
     const newEntry = {
-      date: today,
-      campaign: slug,
-      contacts: String(kuotaNumber),
-      status: "Di Jadwalkan",
-      sentDate: " ",
-      title: caption.slice(0, 60),
-      slug,
+      id: `sub_${Date.now()}`,
+      createdAt: new Date().toISOString(),
+      campaign: formattedCampaignName,
+      contacts: kuotaNumber,
+      status: "Dijadwalkan",
+      sentAt: null,
+      title: formattedCampaignName,
+      slug: slug.toLowerCase().trim(),
       description: caption,
-      image: "/images/Sh.png",
+      image: posterDataUrl || "/images/Sh.png", // Gunakan gambar yang diupload atau fallback gambar default
       picName,
       phone,
       tanggalBlast: tanggal,
+      posterName: posterName ?? null,
     };
 
     data.unshift(newEntry);

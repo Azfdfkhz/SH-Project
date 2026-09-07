@@ -1,6 +1,6 @@
 export default function StatusBadge({ status }) {
   const statusStyle = {
-    "Di Jadwalkan": "bg-[#dcecff] text-[#4b8ad8]",
+    "Di jadwalkan": "bg-[#DBEAFE] text-[#1E5BBB]",
     "Terkirim": "bg-[#c8f4d5] text-[#43ad68]",
   };
 
