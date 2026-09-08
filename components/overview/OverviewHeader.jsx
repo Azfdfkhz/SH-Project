@@ -1,3 +1,5 @@
+import MobileNavTabs from "@/components/MobileNav";
+
 export default function OverviewHeader() {
   return (
     <header className="mb-5">
@@ -8,6 +10,9 @@ export default function OverviewHeader() {
       <p className="mt-1 text-[13px] font-medium text-[#777]">
         Jangkau lebih banyak donatur untuk campaign kamu
       </p>
+
+      {/* Mobile Navigation Tabs */}
+      <MobileNavTabs />
     </header>
   );
 }
