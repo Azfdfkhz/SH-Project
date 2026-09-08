@@ -79,7 +79,7 @@ export default function Sidebar() {
                   ${
                     active
                       ? "bg-[#e8f0fb] text-[#263238]"
-                      : "text-[#263238]"
+                      : "text-[#263238] "
                   }
                 `}
               >
