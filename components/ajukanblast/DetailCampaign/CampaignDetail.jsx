@@ -1,5 +1,5 @@
-import SectionTitle from "../SectionTitle";
-import ReadonlyInput from "../ReadonlyInput";
+import SectionTitle from "../KonfigurationBlast/SectionTitle";
+import ReadonlyInput from "../KonfigurationBlast/ReadonlyInput";
 
 export default function CampaignDetail({ slug = "", onSlugChange, error }) {
   return (

@@ -3,7 +3,6 @@
 import useModal from "@/lib/useModal";
 
 export default function SuccessModal({ isOpen, onClose }) {
-  // Hook harus dipanggil sebelum early return (aturan hooks React)
   useModal({ isOpen, onClose });
 
   if (!isOpen) return null;

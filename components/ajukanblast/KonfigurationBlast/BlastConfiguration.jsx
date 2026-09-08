@@ -1,8 +1,8 @@
 "use client";
 
-import SectionTitle from "@/components/ajukanblast/SectionTitle";
+import SectionTitle from "@/components/ajukanblast/KonfigurationBlast/SectionTitle";
 import PosterUpload from "@/components/ajukanblast/KonfigurationBlast/PosterUpload";
-import FormInput from "@/components/ajukanblast/FormInput";
+import FormInput from "@/components/ajukanblast/KonfigurationBlast/FormInput";
 
 // Tanggal hari ini dalam format YYYY-MM-DD untuk atribut `min` input date,
 // supaya tanggal blast di masa lalu tidak bisa dipilih.

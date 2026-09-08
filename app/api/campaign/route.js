@@ -5,8 +5,6 @@ import path from "path";
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
 
-// TODO(backend): Ambil dari database.
-// Query jumlah pengajuan yang tanggal createdAt-nya pada bulan ini.
 
 export async function GET() {
   try {

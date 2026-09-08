@@ -1,7 +1,7 @@
 import Sidebar from "@/components/Sidebar";
 import OverviewHeader from "@/components/overview/OverviewHeader";
-import BlastForm from "@/components/ajukanblast/BlastForm";
-import WhatsAppInfo from "@/components/ajukanblast/WhatsappInfo";
+import BlastForm from "@/components/ajukanblast/KonfigurationBlast/BlastForm";
+import WhatsAppInfo from "@/components/ajukanblast/KonfigurationBlast/WhatsappInfo";
 
 export default function Home() {
   return (

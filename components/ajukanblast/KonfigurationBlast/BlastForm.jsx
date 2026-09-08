@@ -2,12 +2,12 @@
 
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import MemberData from "./DataKemitraan/MemberData";
-import CampaignDetail from "./DetailCampaign/CampaignDetail";
-import BlastConfiguration from "./KonfigurationBlast/BlastConfiguration";
-import ConfirmationModal from "./PopUpBlast/BlastConfirmationModal";
-import SuccessModal from "./PopUpBlast/BlastSuccessModal";
-import BlastQuotaEmptyModal from "./PopUpBlast/BlastQuotaEmptyModal";
+import MemberData from "./MemberData";
+import CampaignDetail from "../DetailCampaign/CampaignDetail";
+import BlastConfiguration from "./BlastConfiguration";
+import ConfirmationModal from "../PopUpBlast/BlastConfirmationModal";
+import SuccessModal from "../PopUpBlast/BlastSuccessModal";
+import BlastQuotaEmptyModal from "../PopUpBlast/BlastQuotaEmptyModal";
 import { MAX_KUOTA, PHONE_REGEX } from "@/lib/constants";
 
 const initialForm = {
@@ -121,8 +121,6 @@ export default function BlastForm() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           ...form,
-          // Metadata poster — backend tinggal menangani field ini
-          // (upload storage / validasi) kalau sudah siap.
           posterName: poster?.name ?? null,
           posterSize: poster?.size ?? null,
           posterDataUrl,
@@ -145,8 +143,6 @@ export default function BlastForm() {
       setPoster(null);
       setIsSuccessOpen(true);
 
-      // Paksa server components (mis. ringkasan kuota di halaman lain)
-      // mengambil ulang data terbaru.
       router.refresh();
     } catch (error) {
       setSubmitError(error.message);

@@ -3,8 +3,6 @@ import fs from "fs";
 import path from "path";
 import { MAX_KUOTA } from "@/lib/constants";
 
-// Sama seperti /api/campaign — cegah Next.js meng-cache response
-// GET ini supaya data pengajuan yang baru langsung kelihatan.
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
 

@@ -9,7 +9,6 @@ export default function ConfirmationModal({
   isSubmitting = false,
   error = null,
 }) {
-  // Hook harus dipanggil sebelum early return (aturan hooks React)
   useModal({ isOpen, onClose: () => !isSubmitting && onClose() });
 
   if (!isOpen) return null;

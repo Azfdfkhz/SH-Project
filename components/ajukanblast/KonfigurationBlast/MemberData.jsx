@@ -1,6 +1,6 @@
-import SectionTitle from "../SectionTitle";
-import ReadonlyInput from "../ReadonlyInput";
-import FormInput from "../FormInput";
+import SectionTitle from "./SectionTitle";
+import ReadonlyInput from "./ReadonlyInput";
+import FormInput from "./FormInput";
 
 export default function MemberData({
   picName = "",
